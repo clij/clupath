@@ -24,7 +24,7 @@ In order to make CLUPATH run in QuPath, download the following jar files, remove
 * [scijava-common-2.77.0.jar](https://sites.imagej.net/Java-8/jars/scijava-common-2.76.1.jar-20181204141527)
 
 In the same folder, locate and edit `QuPath-0.2.0-m3.cfg`. 
-In the line starting with `` append the following jar files by the end:
+In the line starting with `app.classpath=` append the following jar files by the end:
 ```
 bridj-0.7.0.jar;clij_-1.1.4.jar;clij-clearcl-0.8.4.jar;clij-core-1.1.4.jar;clij-coremem-0.5.5.jar;clij-legacy_-0.1.0.jar;clupath-0.1.0.jar;imagej-common-0.28.2.jar;imglib2-5.6.3.jar;imglib2-realtransform-2.1.0.jar;jocl-2.0.1.jar;scijava-common-2.76.1.jar;
 ```
