@@ -1,0 +1,63 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>net.haesleinhuepf</groupId>
+		<artifactId>clij-parent-pom</artifactId>
+		<version>1.1.4</version>
+	</parent>
+
+	<groupId>net.haesleinhuepf</groupId>
+	<artifactId>clupath</artifactId>
+	<version>0.1.0</version>
+	<name>CLIJ QuPath</name>
+	<description>CLIJ bridge to QuPath</description>
+
+	<repositories>
+		<repository>
+			<id>clij</id>
+			<url>http://dl.bintray.com/haesleinhuepf/clij</url>
+		</repository>
+	</repositories>
+
+	<dependencies>
+		<dependency>
+			<artifactId>.qupath.</artifactId>
+			<groupId>..</groupId>
+			<version>1</version>
+			<scope>system</scope>
+			<systemPath>C:/Users/rober/AppData/Local/QuPath-0.2.0-m3/app/qupath-0.2.0-m3.jar</systemPath>
+		</dependency>
+		<dependency>
+			<artifactId>.qupathcore.</artifactId>
+			<groupId>..</groupId>
+			<version>1</version>
+			<scope>system</scope>
+			<systemPath>C:/Users/rober/AppData/Local/QuPath-0.2.0-m3/app/qupath-core-0.2.0-m3.jar</systemPath>
+		</dependency>
+		<dependency>
+			<groupId>net.haesleinhuepf</groupId>
+			<artifactId>clij-core</artifactId>
+			<version>1.1.4</version>
+		</dependency>
+	</dependencies>
+	
+	<build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <configuration>
+                        <source>1.8</source>
+                        <target>1.8</target>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+	
+</project>
