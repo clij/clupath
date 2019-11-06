@@ -36,3 +36,5 @@ Example code for QuPaths script editor can be found in the [groovy](https://gith
 It is recommended to [use clij from Fiji](https://clij.github.io/clij-docs/installationInFiji). QuPath support is experimental.
 
 [Back to CLIJ documentation](https://clij.github.io/)
+
+[Imprint](https://clij.github.io/imprint)
