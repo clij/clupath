@@ -18,7 +18,7 @@ import qupath.lib.regions.*
 import qupath.imagej.tools.IJTools
 import qupath.imagej.gui.IJExtension
 
-// Read image & show in ImageJ
+// Read image and convert it to ImageJ
 def server = getCurrentServer()
 def original_roi = getSelectedROI()
 double downsample = 1.0
@@ -46,6 +46,9 @@ imp = clij2.pull(result);
 roi = clij2.pullAsROI(result);
 imagePlane = IJTools.getImagePlane(roi, imp);
 roi = IJTools.convertToROI(roi, -original_roi.getBoundsX(), -original_roi.getBoundsY(), downsample, imagePlane);
+
+// cleanup GPU memory
+clij2.clear();
 
 // add the ROI as annotation
 def annotation = PathObjects.createAnnotationObject(roi)
