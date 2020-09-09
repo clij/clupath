@@ -2,7 +2,7 @@
  
 clupath is a bridge between [QuPath](https://qupath.github.io/) and [clij](https://clij.github.io/).
 
-![Image](images/clupath-screenshot.png)
+![Image](images/clupath.gif)
 
 Right now, this is very preliminary.
 
