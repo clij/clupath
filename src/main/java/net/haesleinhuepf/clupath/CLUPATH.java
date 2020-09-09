@@ -1,11 +1,16 @@
 package net.haesleinhuepf.clupath;
 
 import ij.ImagePlus;
+import ij.gui.Roi;
 import net.haesleinhuepf.clij.CLIJ;
 import net.haesleinhuepf.clij.clearcl.ClearCLBuffer;
 import net.haesleinhuepf.clij.coremem.enums.NativeTypeEnum;
 import net.haesleinhuepf.clij.utilities.CLIJOps;
+import net.haesleinhuepf.clij2.CLIJ2;
+import net.haesleinhuepf.clij2.plugins.PullAsROI;
 import net.haesleinhuepf.clupath.converters.BufferedImageToClearCLBufferConverter;
+import qupath.lib.regions.ImagePlane;
+import qupath.lib.roi.interfaces.ROI;
 
 import java.awt.image.BufferedImage;
 
@@ -13,14 +18,17 @@ import java.awt.image.BufferedImage;
  * The CLUPATH gateway.
  *
  * Author: haesleinhuepf
- *         August 2019
+ *         September 2020
  */
-public class CLUPATH {
+public class CLUPATH extends CLIJ2 {
     private static CLUPATH instance;
-    private final CLIJ clij;
+
+    public CLUPATH() {
+        super(CLIJ.getInstance());
+    }
 
     private CLUPATH(CLIJ clij) {
-        this.clij = clij;
+        super(clij);
     }
 
     public static CLUPATH getInstance() {
@@ -30,40 +38,29 @@ public class CLUPATH {
         return instance;
     }
 
-    public CLUPATH getInstance(String id) {
+    public static CLUPATH getInstance(String id) {
         if (instance == null) {
             instance = new CLUPATH(CLIJ.getInstance(id));
         }
         return instance;
     }
 
-    public ClearCLBuffer push(ImagePlus imp) {
-        return clij.convert(imp, ClearCLBuffer.class);
-    }
-
-    public ClearCLBuffer push(BufferedImage data) {
+    public ClearCLBuffer pushBufferedImage(BufferedImage data) {
         BufferedImageToClearCLBufferConverter converter = new BufferedImageToClearCLBufferConverter();
         converter.setCLIJ(clij);
+
         return converter.convert(data);
     }
 
-    public ImagePlus pull(ClearCLBuffer buffer ) {
-        return clij.convert(buffer, ImagePlus.class);
-    }
+    //import qupath.imagej.tools.IJTools;
+    /*
+    public ROI pullQuPathROI(ClearCLBuffer binary) {
+        ImagePlus imp = clij.pull(binary);
+        Roi roi = PullAsROI.pullAsROI(this, binary);
 
-    public ClearCLBuffer create(long[] dimensions, NativeTypeEnum type) {
-        return clij.create(dimensions, type);
-    }
+        ImagePlane imagePlane = IJTools.getImagePlane(roi, imp);
 
-    public ClearCLBuffer create(ClearCLBuffer buffer) {
-        return clij.create(buffer);
+        return IJTools.convertToROI(roi, 0, 0, 1, imagePlane);
     }
-
-    public CLIJOps op() {
-        return clij.op();
-    }
-
-    public String getGPUName() {
-        return clij.getGPUName();
-    }
+    */
 }

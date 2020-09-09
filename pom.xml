@@ -7,14 +7,14 @@
 	<parent>
 		<groupId>net.haesleinhuepf</groupId>
 		<artifactId>clij-parent-pom</artifactId>
-		<version>1.1.4</version>
+		<version>2.1.1.10</version>
 	</parent>
 
 	<groupId>net.haesleinhuepf</groupId>
 	<artifactId>clupath</artifactId>
-	<version>0.1.0</version>
+	<version>0.2.0.0</version>
 	<name>CLIJ QuPath</name>
-	<description>CLIJ bridge to QuPath</description>
+	<description>CLIJ2 bridge to QuPath</description>
 
 	<repositories>
 		<repository>
@@ -29,19 +29,25 @@
 			<groupId>..</groupId>
 			<version>1</version>
 			<scope>system</scope>
-			<systemPath>C:/Users/rober/AppData/Local/QuPath-0.2.0-m3/app/qupath-0.2.0-m3.jar</systemPath>
+			<systemPath>C:/Programs/QuPath0.2.2/QuPath-0.2.2/app/qupath-0.2.2.jar</systemPath>
 		</dependency>
 		<dependency>
 			<artifactId>.qupathcore.</artifactId>
 			<groupId>..</groupId>
 			<version>1</version>
 			<scope>system</scope>
-			<systemPath>C:/Users/rober/AppData/Local/QuPath-0.2.0-m3/app/qupath-core-0.2.0-m3.jar</systemPath>
+			<systemPath>C:/Programs/QuPath0.2.2/QuPath-0.2.2/app/qupath-core-0.2.2.jar</systemPath>
+		</dependency>
+		<dependency>
+			<artifactId>.qupathcoreproc.</artifactId>
+			<groupId>..</groupId>
+			<version>1</version>
+			<scope>system</scope>
+			<systemPath>C:/Programs/QuPath0.2.2/QuPath-0.2.2/app/qupath-core-processing-0.2.2.jar</systemPath>
 		</dependency>
 		<dependency>
 			<groupId>net.haesleinhuepf</groupId>
-			<artifactId>clij-core</artifactId>
-			<version>1.1.4</version>
+			<artifactId>clij2_</artifactId>
 		</dependency>
 	</dependencies>
 	
@@ -58,6 +64,45 @@
                 </plugin>
             </plugins>
         </pluginManagement>
-    </build>
+
+		<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<configuration>
+						<source>1.8</source>
+						<target>1.8</target>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-assembly-plugin</artifactId>
+					<version>2.4.1</version>
+					<configuration>
+						<!-- get all project dependencies -->
+						<descriptorRefs>
+							<descriptorRef>jar-with-dependencies</descriptorRef>
+						</descriptorRefs>
+						<!-- MainClass in mainfest make a executable jar -->
+						<archive>
+							<manifest>
+								<mainClass>net.haesleinhuepf.clupath.CLUPATH</mainClass>
+							</manifest>
+						</archive>
+					</configuration>
+					<executions>
+						<execution>
+							<id>make-assembly</id>
+							<!-- bind to the packaging phase -->
+							<phase>package</phase>
+							<goals>
+								<goal>single</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+			</plugins>
+
+	</build>
 	
 </project>
