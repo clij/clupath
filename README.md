@@ -7,10 +7,11 @@ clupath is a bridge between [QuPath](https://qupath.github.io/) and [clij](https
 Right now, this is very preliminary.
 
 ## Installation
-[Download and install QuPath version 0.2.2](https://github.com/qupath/qupath/releases/tag/v0.2.2). 
+[Download and install QuPath version 0.2.3](https://github.com/qupath/qupath/releases/tag/v0.2.3). 
 In order to make CLUPATH run in QuPath, download the following jar file and drag&drop it on QuPath. QuPath will take care of it and install it in the right folder.
-* [clupath-0.2.0.0-jar-with-dependencies.jar](https://github.com/clij/clupath/releases/download/0.2.0.0/clupath-0.2.0.0-jar-with-dependencies.jar)
+* [clupath-0.2.3.0-jar-with-dependencies.jar](https://github.com/clij/clupath/releases/download/0.2.3.0/clupath-0.2.3.0-jar-with-dependencies.jar)
 
+If you retrieve an error message such as "....jar file cannot be copied", navigate to the QuPath\extensions folder in your home directory, e.g. C:\Users\<username>\QuPath\extensions and delete other versions of clupath...jar.
 
 ## Examples
 Example code for QuPaths script editor can be found in the [groovy](https://github.com/clij/clupath/tree/master/src/main/groovy) directory.
