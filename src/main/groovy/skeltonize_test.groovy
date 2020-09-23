@@ -37,10 +37,13 @@ print(clijx.getGPUName())
 input = clijx.push(imp)
 
 // generate another image in GPU memory of same size and type
+binary = clijx.create(input)
 result = clijx.create(input)
 
 // apply Otsu thresholding
-clijx.thresholdOtsu(input, result)
+clijx.thresholdOtsu(input, binary)
+// skeletonization
+clijx.skeletonize(binary, result)
 
 // pull back result and turn it into a QuPath ROI
 imp = clijx.pull(result)
