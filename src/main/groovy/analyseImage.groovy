@@ -30,29 +30,29 @@ def imp = pathImage.getImage()
 import net.haesleinhuepf.clupath.CLUPATH
 
 // setup clupath
-clij2 = CLUPATH.getInstance()
-print(clij2.getGPUName())
+clijx = CLUPATH.getInstance()
+print(clijx.getGPUName())
 
 // push input image to GPU memory
-input = clij2.push(imp)
+input = clijx.push(imp)
 
 // generate another image in GPU memory of same size and type
-result = clij2.create(input)
+binary = clijx.create(input)
+result = clijx.create(input)
 
 // apply Otsu thresholding
-clij2.thresholdOtsu(input, result)
+clijx.thresholdOtsu(input, result)
+// skeletonization
+clijx.skeletonize(binary, result)
 
 // pull back result and turn it into a QuPath ROI
-imp = clij2.pull(result)
-roi = clij2.pullAsROI(result)
+imp = clijx.pull(result)
+roi = clijx.pullAsROI(result)
 imagePlane = IJTools.getImagePlane(roi, imp)
 roi = IJTools.convertToROI(roi, -request.getX()/downsample, -request.getY()/downsample, downsample, imagePlane)
 
 // cleanup GPU memory
-clij2.clear()
-
-// cleanup GPU memory
-clij2.clear();
+clijx.clear()
 
 // add the ROI as annotation
 def annotation = PathObjects.createAnnotationObject(roi)

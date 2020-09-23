@@ -8,6 +8,7 @@ import net.haesleinhuepf.clij.coremem.enums.NativeTypeEnum;
 import net.haesleinhuepf.clij.utilities.CLIJOps;
 import net.haesleinhuepf.clij2.CLIJ2;
 import net.haesleinhuepf.clij2.plugins.PullAsROI;
+import net.haesleinhuepf.clijx.CLIJx;
 import net.haesleinhuepf.clupath.converters.BufferedImageToClearCLBufferConverter;
 import qupath.lib.regions.ImagePlane;
 import qupath.lib.roi.interfaces.ROI;
@@ -20,7 +21,7 @@ import java.awt.image.BufferedImage;
  * Author: haesleinhuepf
  *         September 2020
  */
-public class CLUPATH extends CLIJ2 {
+public class CLUPATH extends CLIJx {
     private static CLUPATH instance;
 
     public CLUPATH() {
